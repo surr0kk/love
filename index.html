@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title> не грусти балда </title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+      background-size: cover;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      text-align: center;
+    }
+
+    .main-photo {
+      width: 300px;         /* уменьшенный размер фото */
+      border-radius: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      opacity: 0.8;         /* лёгкая прозрачность */
+    }
+
+    h1 {
+      font-size: 2em;
+      margin-bottom: 20px;
+      color: #c2185b;
+    }
+
+    .phrase {
+      font-size: 1.5em;
+      max-width: 90%;
+      margin-bottom: 40px;
+      color: #6a1b9a;
+      transition: opacity 0.3s ease;
+    }
+
+    button {
+      padding: 15px 30px;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 30px;
+      background: #f06292;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: background 0.3s ease;
+      margin: 10px;
+    }
+
+    button:hover {
+      background: #ec407a;
+    }
+
+    footer {
+      position: absolute;
+      bottom: 10px;
+      font-size: 0.8em;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+
+  <img src="love.jpg" alt="любимая" class="main-photo" />
+
+  <button onclick="playMusic()">включить музыку</button>
+  <h1> для самой лучшей </h1>
+  <div class="phrase" id="phrase">нажми на кнопку</div>
+  <button onclick="newPhrase()">показать</button>
+
+  <footer>лю тя</footer>
+
+  <script>
+    function playMusic() {
+      const music = document.getElementById('bg-music');
+      music.play().catch(() => {});
+    }
+
+    const phrases = [
+      "ты у меня самая самая лучшая котён",
+      "отравлен тобой",
+      "хочу быть с тобой всегда",
+      "ты даешь мне мотивацию становиться лучше!",
+      "ты самая самая красивая, умная и вообще лучшая на свете",
+      "не обижайся на меня любимая моя",
+      "улыбайся почаще красотка"
+    ];
+
+    function newPhrase() {
+      const el = document.getElementById('phrase');
+      el.style.opacity = 0;
+      const music = document.getElementById('bg-music');
+      if (music.paused) {
+        music.play().catch(() => {});
+      }
+      setTimeout(() => {
+        const random = Math.floor(Math.random() * phrases.length);
+        el.textContent = phrases[random];
+        el.style.opacity = 1;
+      }, 300);
+    }
+  </script>
+
+  <audio id="bg-music" autoplay loop>
+    <source src="xd.mp3" type="audio/mpeg">
+    Ваш браузер не поддерживает музыку.
+  </audio>
+
+</body>
+</html>
